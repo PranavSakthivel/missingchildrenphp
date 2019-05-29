@@ -1,6 +1,6 @@
 <?php
 /**
- *Index file for PHP 
+ *Index file for PHP oof
 */?>
 <html>
 <head>
