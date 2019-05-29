@@ -7,7 +7,7 @@
 */?>
 <html>
 <head>
-    <title>Sample PHP Database Program</title>
+    <title>Missing Children PHP Database Program</title>
     <link rel="stylesheet" href="base.css">
 </head>
 <body>
@@ -16,7 +16,7 @@ require_once 'header.inc.php';
 ?>
 <div>
     <h2>About</h2>
-    <div>This is sample PHP program that does simple database operations calling the mysqli library in PHP</div>
+    <div>This is a website that runs queries on a database of missing children.</div>
 </div>
 </body>
 </html>
