@@ -10,7 +10,7 @@ require_once 'config.inc.php';
 ?>
 <html>
 <head>
-    <title>Sample PHP Database Program</title>
+    <title>Missing Children Database</title>
     <link rel="stylesheet" href="base.css">
 </head>
 <body>
@@ -29,7 +29,7 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL
-    $sql = "SELECT ItemNumber,ItemDescription,CategoryCode FROM catalogitem";
+    $sql = "SELECT missingPersonCaseID,missingPersonZipCode,missingPersonCaseDateMissing FROM MissingPersonCase";
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
