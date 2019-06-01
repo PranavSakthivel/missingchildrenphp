@@ -43,7 +43,7 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL using Parameterized Form (Safe from SQL Injections)
-    $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
+    $sql = "SELECT P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
         MPC.missingPersonCaseDateMissing
         FROM Person AS P 
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
@@ -56,13 +56,13 @@ require_once 'header.inc.php';
     else {
 		
 		// Bind Parameters from User Input
-        $stmt->bind_param('s',$id);
+        $stmt->bind_param('s',$personID);
 		
 		// Execute the Statement
         $stmt->execute();
 		
 		// Process Results Using Cursor
-        $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
+        $stmt->bind_result($firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
             echo '<a href="show_children.php?id='  . $personID . '">' . $customerName . '</a><br>' .
