@@ -29,7 +29,12 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL Statement
-    $sql = "SELECT CustomerNumber,CustomerName FROM Customer ORDER BY CustomerName";
+    $sql = "SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
+            FROM MissingPersonCase AS MPC 
+            INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
+            INNER JOIN Person AS P ON CPT.personID = P.personID 
+            WHERE CPT.roleCode = \"Victim\" 
+            ORDER BY P.personFirstName;";
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
@@ -40,10 +45,10 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Loop Through Result
-        $stmt->bind_result($customerNumber,$customerName);
+        $stmt->bind_result($firstName,$lastName,$caseCity,$personID,$mpcID);
         echo "<ul>";
         while ($stmt->fetch()) {
-            echo '<li><a href="show_customer.php?id='  . $customerNumber . '">' . $customerName . '</a></li>';
+            echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity . '</a></li>';
         }
         echo "</ul>";
     }

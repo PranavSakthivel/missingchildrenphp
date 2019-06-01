@@ -29,7 +29,10 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL
-    $sql = "SELECT ItemNumber,ItemDescription,CategoryCode FROM catalogitem";
+    /*$sql = "SELECT ItemNumber,ItemDescription,CategoryCode FROM catalogitem";*/
+    $sql = "SELECT `RA`.`agencyID`, `RA`.`agencyTitle`, `RA`.`agencyMainPhoneNumber`, `RA`.`agencyCity`, `RA`.`stateCode`
+            FROM `ReportingAgency` AS `RA`;";
+
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
@@ -40,9 +43,9 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Process Results using Cursor
-        $stmt->bind_result($itemNumber,$description, $category_code);
+        $stmt->bind_result($agencyID,$title,$phone,$city,$state);
         while ($stmt->fetch()) {
-            echo "<p>" . $description . "</p>";
+            echo "<p>" . $title," ",$phone,", ",$city,", ",$state . "</p>";
         }
     }
 
