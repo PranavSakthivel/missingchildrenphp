@@ -7,7 +7,7 @@
  */
 require_once 'config.inc.php';
 // Get Customer Number
-$id = $_GET['personID'];
+$id = $_GET['id'];
 if ($id === "") {
     header('location: list_children.php');
     exit();
@@ -31,7 +31,7 @@ if ($id === null) {
 require_once 'header.inc.php';
 ?>
 <div>
-    <h2>Show Customer</h2>
+    <h2>Show Missing Person Information</h2>
     <?php
 
     // Create connection
@@ -43,7 +43,7 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL using Parameterized Form (Safe from SQL Injections)
-    $sql = "SELECT P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
+    $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
         MPC.missingPersonCaseDateMissing
         FROM Person AS P 
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
@@ -56,22 +56,22 @@ require_once 'header.inc.php';
     else {
 		
 		// Bind Parameters from User Input
-        $stmt->bind_param('s',$personID);
+        $stmt->bind_param('s',$id);
 		
 		// Execute the Statement
         $stmt->execute();
 		
 		// Process Results Using Cursor
-        $stmt->bind_result($firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
+        $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_children.php?id='  . $personID . '">' . $customerName . '</a><br>' .
-             $streetName . ',' . $stateCode . '  ' . $postalCode;
+            echo '<a href="show_children.php?id='  . $personID . '">' . $firstName," ",$middleName," ",$lastName . '</a><br>' .
+             $cityName . ',' . "Missing on: ",$dateMissing . '  ' . "Weight: " . $weight . "height" . $height . $birthDate;
         }
         echo "</div>";
     ?>
         <div>
-            <a href="update_report.php?id=<?= $personID ?>">Update Customer</a>
+            <a href="update_report.php?id=<?= $personID ?>">Update Information</a>
         </div>
     <?php
     }
