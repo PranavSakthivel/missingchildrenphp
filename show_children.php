@@ -48,7 +48,7 @@ require_once 'header.inc.php';
         FROM Person AS P 
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
         INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
-        WHERE MPC.missingPersonCaseID = 10;";
+        WHERE MPC.missingPersonCaseID = ?;";
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
