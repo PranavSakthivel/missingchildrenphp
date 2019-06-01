@@ -7,7 +7,7 @@
  */
 require_once 'config.inc.php';
 // Get Customer Number
-$id = $_GET['persondID'];
+$id = $_GET['personID'];
 if ($id === "") {
     header('location: list_children.php');
     exit();
@@ -65,13 +65,13 @@ require_once 'header.inc.php';
         $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_customer.php?id='  . $personID . '">' . $customerName . '</a><br>' .
+            echo '<a href="show_children.php?id='  . $personID . '">' . $customerName . '</a><br>' .
              $streetName . ',' . $stateCode . '  ' . $postalCode;
         }
         echo "</div>";
     ?>
         <div>
-            <a href="update_report.php?id=<?= $customerNumber ?>">Update Customer</a>
+            <a href="update_report.php?id=<?= $personID ?>">Update Customer</a>
         </div>
     <?php
     }
