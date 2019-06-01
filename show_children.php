@@ -7,17 +7,17 @@
  */
 require_once 'config.inc.php';
 // Get Customer Number
-$id = $_GET['id'];
+$id = $_GET['persondID'];
 if ($id === "") {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 if ($id === false) {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 if ($id === null) {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 ?>
@@ -62,7 +62,7 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Process Results Using Cursor
-        $stmt->bind_result($firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
+        $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
             echo '<a href="show_customer.php?id='  . $personID . '">' . $customerName . '</a><br>' .
