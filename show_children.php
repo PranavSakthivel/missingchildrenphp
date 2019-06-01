@@ -43,8 +43,12 @@ require_once 'header.inc.php';
     }
 
 	// Prepare SQL using Parameterized Form (Safe from SQL Injections)
-    $sql = "SELECT CustomerNumber,CustomerName,StreetAddress,CityName,StateCode,PostalCode FROM Customer C " .
-        "INNER JOIN Address A ON C.defaultAddressID = A.addressID WHERE CustomerNumber = ?";
+    $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
+        MPC.missingPersonCaseDateMissing
+        FROM Person AS P 
+        INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
+        INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
+        WHERE MPC.missingPersonCaseID = 10;";
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
@@ -58,16 +62,16 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Process Results Using Cursor
-        $stmt->bind_result($customerNumber,$customerName,$streetName,$cityName,$stateCode,$postalCode);
+        $stmt->bind_result($firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_customer.php?id='  . $customerNumber . '">' . $customerName . '</a><br>' .
+            echo '<a href="show_customer.php?id='  . $personID . '">' . $customerName . '</a><br>' .
              $streetName . ',' . $stateCode . '  ' . $postalCode;
         }
         echo "</div>";
     ?>
         <div>
-            <a href="update_customer.php?id=<?= $customerNumber ?>">Update Customer</a>
+            <a href="update_report.php?id=<?= $customerNumber ?>">Update Customer</a>
         </div>
     <?php
     }

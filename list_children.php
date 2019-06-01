@@ -45,10 +45,10 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Loop Through Result
-        $stmt->bind_result($firstName,$lastName,$caseCity,$personID,$mpcID);
+        $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID);
         echo "<ul>";
         while ($stmt->fetch()) {
-            echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity . '</a></li>';
+            echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
         }
         echo "</ul>";
     }
