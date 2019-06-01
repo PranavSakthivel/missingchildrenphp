@@ -65,7 +65,7 @@ require_once 'header.inc.php';
         $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_children.php?id='  . $personID . '">' . $firstName," ",$middleName," ",$lastName . '</a><br>' .
+            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . $firstName," ",$middleName," ",$lastName .
              $cityName . ',' . "Missing on: ",$dateMissing . '  ' . "Weight: " . $weight . "height" . $height . $birthDate;
         }
         echo "</div>";
