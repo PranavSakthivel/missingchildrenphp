@@ -1,0 +1,103 @@
+{
+    "people": {
+        "1" : {
+            "firstname": "Joshua",
+            "lastname": "Gordillo",
+            "middlename": "Cortes",
+            "gender": "Male",
+            "SSN": null,
+            "idcard": null,
+            "zipcode": null,
+            "state": "CA",
+            "city": "Oxnard",
+            "address": null,
+            "email": null,
+            "cellphone": null,
+            "homephone": null,
+            "workphone": null,
+            "socialmedia": null
+        },
+        "2" : {
+            "firstname": "Jesus",
+            "lastname": "Gordillo",
+            "middlename": "Cortes",
+            "gender": "Male",
+            "SSN": null,
+            "idcard": null,
+            "zipcode": null,
+            "state": "CA",
+            "city": "Oxnard",
+            "address": null,
+            "email": null,
+            "cellphone": null,
+            "homephone": null,
+            "workphone": null,
+            "socialmedia": null
+        }
+        
+    },
+
+    "MissingPersonCases": {
+        "1" : {
+            "PersonRef" : "1",
+            "AgencyRef": "1",
+            "zipcode": null,
+            "city": "Longview",
+            "address": null,
+            "datemissing": "2001-11-26",
+            "timemissing": null,
+            "state": "WA",
+            "category": null,
+            "incidentType": "-Null-",
+            "timeZone": "PST",
+            "Vehicle" : {
+                "make": "BMW",
+                "vehicleYear": "2013",
+                "vehicleCity": "NV",
+                "licensePlate": "MARIMAR",
+                "tagYear": "2013"
+            }
+        }, 
+        "2" : {
+            "PersonRef" : "2",
+            "agencyRef": "2",
+            "zipcode": null,
+            "city": "Seattle",
+            "address": null,
+            "datemissing": "2019-04-20",
+            "timemissing": null,
+            "state": "WA",
+            "category": "At Risk",
+            "incidentType": "Run Away",
+            "timeZone": "PST",
+            "Vehicle" : {
+                "make": "Nissan",
+                "vehicleYear": "2011",
+                "vehicleCity": null,
+                "licensePlate": null,
+                "tagYear": "2019"
+            }
+        }
+
+    },
+    "ReportingAgencies" : {
+        "1" : {
+            "title": "National Center for Missing & Exploited Children",
+            "address": "699 Prince Street",
+            "city": "Alexandria",
+            "phonenumber": "703-224-2150",
+            "faxphonenumber": "703-224-2122",
+            "zipcode": "22314",
+            "state": "VA"
+        },
+        "2" : {
+            "title": "Polly Klaas Foundation",
+            "address": "PO Box 800",
+            "city": "Petaluma",
+            "phoneNumber": "800-587-4357",
+            "faxphonenumber": "707-769-4019",
+            "zipcode": "94953",
+            "state": "CA"
+        }
+    }  
+}
