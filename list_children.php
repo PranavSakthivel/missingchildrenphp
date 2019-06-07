@@ -48,7 +48,7 @@ require_once 'header.inc.php';
         $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID);
         echo "<ul>";
         while ($stmt->fetch()) {
-            echo '<li><a href="show_children.php?id='  . $mpcID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
+            echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
         }
         echo "</ul>";
     }
