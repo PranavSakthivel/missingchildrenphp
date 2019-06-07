@@ -18,7 +18,7 @@ require_once 'config.inc.php';
 require_once 'header.inc.php';
 ?>
 <div>
-    <h2>Customer List</h2>
+    <h2>Missing Children List</h2>
     <?php
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database, $port);
