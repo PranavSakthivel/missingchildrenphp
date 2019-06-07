@@ -42,13 +42,19 @@ require_once 'header.inc.php';
         die("Connection failed: " . $conn->connect_error);
     }
 
-	// Prepare SQL using Parameterized Form (Safe from SQL Injections)
+    // Prepare SQL using Parameterized Form (Safe from SQL Injections)
     $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
+        MPC.missingPersonCaseDateMissing
+        FROM Person AS P 
+        INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
+        INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
+        WHERE MPC.missingPersonCaseID = ?;";
+    /*$sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
         MPC.missingPersonCaseDateMissing
         FROM Person AS P
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID
         INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID;
-        WHERE P.personID = ?;";
+        WHERE P.personID = ?;";*/
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
