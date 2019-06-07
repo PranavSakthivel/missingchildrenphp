@@ -66,7 +66,7 @@ require_once 'header.inc.php';
         echo "<div>";
         while ($stmt->fetch()) {
             echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . PHP_EOL . 
-             $cityName . PHP_EOL . "Missing on: ",$dateMissing . PHP_EOL . "Weight: " . $weight . PHP_EOL . "height" . $height . PHP_EOL . $birthDate;
+             $cityName . PHP_EOL . "Missing on: ",$dateMissing . PHP_EOL . "Weight: " . $weight . PHP_EOL . "height" . $height . PHP_EOL . "Birth date: " . $birthDate;
         }
         echo "</div>";
     ?>

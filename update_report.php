@@ -54,8 +54,8 @@ require_once 'header.inc.php';
         else {
 			
             /* perform update using safe parameterized sql */
-            $sql = "UPDATE Customer SET CustomerName = ? WHERE CustomerNumber = ?";
-            /*$sql = "UPDATE Person P SET P.personFirstName = ? WHERE personID = ?";*/
+            /*$sql = "UPDATE Customer SET CustomerName = ? WHERE CustomerNumber = ?";*/
+            $sql = "UPDATE Person P SET P.personFirstName = ? WHERE personID = ?";
             $stmt = $conn->stmt_init();
             if (!$stmt->prepare($sql)) {
                 echo "failed to prepare";
