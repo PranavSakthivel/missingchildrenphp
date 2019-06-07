@@ -23,7 +23,7 @@ if ($id === null) {
 ?>
 <html>
 <head>
-    <title>Sample PHP Database Program</title>
+    <title>Missing Children PHP</title>
     <link rel="stylesheet" href="base.css">
 </head>
 <body>
@@ -47,8 +47,8 @@ require_once 'header.inc.php';
         MPC.missingPersonCaseDateMissing
         FROM Person AS P 
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
-        INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
-        WHERE MPC.missingPersonCaseID = ?;";
+        INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID;";
+        /*WHERE MPC.missingPersonCaseID = ?;"*/
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
