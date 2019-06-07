@@ -12,5 +12,5 @@
     <a href="list_children.php">Missing Children List</a>
     <a href="list_cases.php">Agencies List</a>
 </div></div>
-<h1>Sample PHP Database Program</h1>
+<h1>Missing Children Database</h1>
 

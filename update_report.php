@@ -9,21 +9,21 @@ require_once 'config.inc.php';
 // Get Customer Number
 $id = $_GET['id'];
 if ($id === "") {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 if ($id === false) {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 if ($id === null) {
-    header('location: list_customers.php');
+    header('location: list_children.php');
     exit();
 }
 ?>
 <html>
 <head>
-    <title>Sample PHP Database Program</title>
+    <title>Missing Children Database</title>
     <link rel="stylesheet" href="base.css">
 </head>
 <body>
@@ -31,7 +31,7 @@ if ($id === null) {
 require_once 'header.inc.php';
 ?>
 <div>
-    <h2>Update Customer</h2>
+    <h2>Update Child</h2>
     <?php
 
     // Create connection
@@ -55,6 +55,7 @@ require_once 'header.inc.php';
 			
             /* perform update using safe parameterized sql */
             $sql = "UPDATE Customer SET CustomerName = ? WHERE CustomerNumber = ?";
+            /*$sql = "UPDATE Person P SET P.personFirstName = ? WHERE personID = ?";*/
             $stmt = $conn->stmt_init();
             if (!$stmt->prepare($sql)) {
                 echo "failed to prepare";

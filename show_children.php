@@ -49,12 +49,6 @@ require_once 'header.inc.php';
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
         INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
         WHERE CPT.personID = ?;";
-    /*$sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
-        MPC.missingPersonCaseDateMissing
-        FROM Person AS P
-        INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID
-        INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID;
-        WHERE P.personID = ?;";*/
     $stmt = $conn->stmt_init();
     if (!$stmt->prepare($sql)) {
         echo "failed to prepare";
@@ -71,8 +65,8 @@ require_once 'header.inc.php';
         $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . $firstName," ",$middleName," ",$lastName .
-             $cityName . ',' . "Missing on: ",$dateMissing . '  ' . "Weight: " . $weight . "height" . $height . $birthDate;
+            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\n" . 
+             $cityName . '\n' . "Missing on: ",$dateMissing . '\n' . "Weight: " . $weight ."\n" . "height" . $height . "\n" . $birthDate;
         }
         echo "</div>";
     ?>

@@ -4,7 +4,7 @@
 */?>
 <html>
 <head>
-    <title>Missing Children PHP Database Program</title>
+    <title>Missing Children Database</title>
     <link rel="stylesheet" href="base.css">
 </head>
 <body>
