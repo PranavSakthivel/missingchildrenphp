@@ -46,7 +46,7 @@ require_once 'header.inc.php';
     $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
         MPC.missingPersonCaseDateMissing
         FROM Person AS P 
-        INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
+        INNER JOIN CasePersonTable AS CPT ON  P.personID = CPT.personID
         INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID;
         WHERE MPC.missingPersonCaseID = ?;";
     $stmt = $conn->stmt_init();
