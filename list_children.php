@@ -19,10 +19,11 @@ require_once 'header.inc.php';
 ?>
 <div>
     <h2>Missing Children List</h2>
-
-    <form name="personFirstName" method = "GET">
-    <input id="search" type="text" placeholder="Type Here">
-    <input id="submit" type="submit" value="Search">
+    <small>Search by First Name</small>
+    <form action="search_people.php" method="GET">
+        <input type="text" name="query" />
+        <input type="submit" value="Search" />
+    </form>
             
     <?php
     // Create connection
