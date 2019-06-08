@@ -17,9 +17,6 @@ require_once 'config.inc.php';
 <?php
 require_once 'header.inc.php';
 ?>
-<?php
-require_once 'search_people.php';
-?>
 <div>
     <h2>Missing Children List</h2>
     <?php

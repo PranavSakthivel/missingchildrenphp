@@ -1,26 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: MKochanski
- * Date: 7/24/2018
- * Time: 3:07 PM
- */
-require_once 'config.inc.php';
-// Get Customer Number
-$id = $_GET['id'];
-if ($id === "") {
-    header('location: list_children.php');
-    exit();
-}
-if ($id === false) {
-    header('location: list_children.php');
-    exit();
-}
-if ($id === null) {
-    header('location: list_children.php');
-    exit();
-}
-?>
+
 <html>
 <head>
     <title>Missing Children Database</title>

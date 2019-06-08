@@ -30,9 +30,6 @@ if ($id === null) {
 <?php
 require_once 'header.inc.php';
 ?>
-<?php
-require_once 'search_people.php';
-?>
 <div>
     <h2>Show Missing Person Information</h2>
     <?php
