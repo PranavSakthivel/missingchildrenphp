@@ -67,15 +67,15 @@ require_once 'header.inc.php';
         while ($stmt->fetch()) {
             echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\r\n" . 
               "
-              Missing Since: ",$dateMissing . "\r\n" . "
-              Missing From: " . $cityName . " " . $state . "\r\n" . "
-              Birth date: " . $birthDate . "\r\n" . "
-              Age Now: " . $age. "\r\n" . "
-              Gender: " . $gender . "\r\n" . "
-              Race: ". $race . "\r\n" . "
-              Eyes Color: " . $eyeColor . "\r\n" . "
-              Weight: " . $weight . "\r\n" . "
-              Height: " . $height . "\r\n";
+              Missing Since: ",$dateMissing . "<br>" . 
+              "Missing From: " . $cityName . " " . $state . "<br>" . 
+              "Birth date: " . $birthDate . "<br>" . 
+              "Age Now: " . $age. "<br>" . 
+              "Gender: " . $gender . "<br>" . 
+              "Race: ". $race . "<br>" . 
+              "Eyes Color: " . $eyeColor . "<br>" . 
+              "Weight: " . $weight . "<br>" . 
+              "Height: " . $height . "<br>";
         }
         echo "</div>";
     ?>
