@@ -25,7 +25,7 @@
         $query = htmlspecialchars($query); 
         // changes characters used in html to their equivalents, for example: < to &gt;
          
-        $query = mysql_real_escape_string($query);
+        $query = mysqli_real_escape_string($query);
         // makes sure nobody uses SQL injection
          
         $raw_results = mysql_query("SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
