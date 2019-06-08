@@ -44,7 +44,7 @@ require_once 'header.inc.php';
 
     // Prepare SQL using Parameterized Form (Safe from SQL Injections)
     $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
-        MPC.missingPersonCaseDateMissing
+        MPC.missingPersonCaseDateMissing, CPT.CasePersonAge, P.genderCode, CPT.raceCode, CPT.eyeColor, MPC.stateCode
         FROM Person AS P 
         INNER JOIN CasePersonTable AS CPT ON CPT.personID = P.personID 
         INNER JOIN MissingPersonCase AS MPC ON CPT.missingPersonCaseID = MPC.missingPersonCaseID
@@ -62,11 +62,13 @@ require_once 'header.inc.php';
         $stmt->execute();
 		
 		// Process Results Using Cursor
-        $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing);
+        $stmt->bind_result($personID,$firstName,$lastName,$middleName,$cityName,$birthDate,$weight,$height,$dateMissing, $age, $gender, $race, $eyeColor, $state);
         echo "<div>";
         while ($stmt->fetch()) {
-            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\x" . 
-             $cityName . "\x" . "Missing on: ",$dateMissing . "\x" . "Weight: " . $weight . "\x" . "height" . $height . "\x" . "Birth date: " . $birthDate;
+            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\r\n" . 
+              "Missing Since: ",$dateMissing . "\r\n" . "Missing From: " . $cityName . " " . $state . "\r\n" . "Birth date: " . $birthDate . 
+              "\r\n" . "Age Now: " . $age. "\r\n" . "Gender: " . $gender . "\r\n" . "Race: ". $race . "\r\n" . "Eyes Color: " . $eyeColor . "\r\n" . 
+               "Weight: " . $weight . "\r\n" . "height" . $height . "\r\n";
         }
         echo "</div>";
     ?>

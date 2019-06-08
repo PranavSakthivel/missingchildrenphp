@@ -54,7 +54,6 @@ require_once 'header.inc.php';
         else {
 			
             /* perform update using safe parameterized sql */
-            /*$sql = "UPDATE Customer SET CustomerName = ? WHERE CustomerNumber = ?";*/
             $sql = "UPDATE Person P SET P.personFirstName = ? WHERE personID = ?";
             $stmt = $conn->stmt_init();
             if (!$stmt->prepare($sql)) {
@@ -72,8 +71,6 @@ require_once 'header.inc.php';
     }
 
     /* Refresh the Data */
-    /*$sql = "SELECT CustomerNumber,CustomerName,StreetAddress,CityName,StateCode,PostalCode FROM Customer C " .
-        "INNER JOIN Address A ON C.defaultAddressID = A.addressID WHERE CustomerNumber = ?";*/
     $sql = "SELECT P.personID, P.personFirstName, P.personLastName, P.personMiddleName, P.personCity, CPT.CasePersonBirthDate, CPT.CasePersonWeight, CPT.CasePersonHeight, 
     MPC.missingPersonCaseDateMissing
     FROM Person AS P 
@@ -93,8 +90,8 @@ require_once 'header.inc.php';
             <input type="hidden" name="id" value="<?= $id ?>">
         <?php
         while ($stmt->fetch()) {
-            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . PHP_EOL . 
-             $cityName . PHP_EOL . "Missing on: ",$dateMissing . PHP_EOL . "Weight: " . $weight . PHP_EOL . "height" . $height . PHP_EOL . "Birth date: " . $birthDate;
+            echo '<a href="show_children.php?id='  . $personID . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\r\n" . 
+             $cityName . "\r\n" . "Missing on: ",$dateMissing . "\r\n" . "Weight: " . $weight . "\r\n" . "height" . $height . "\r\n" . "Birth date: " . $birthDate;
         }
     ?><br><br>
             New Name: <input type="text" name="personFirstName">
