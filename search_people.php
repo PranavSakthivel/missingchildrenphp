@@ -1,5 +1,12 @@
-<?php
 
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="base.css">
+</head>
+<body>
+<?php
+    require_once 'config.inc.php';
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database, $port);
 
@@ -7,17 +14,7 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-?>
- 
-// MAIN PAGE 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Search Results</title>
-    <link rel="stylesheet" href="base.css">
-</head>
-<body>
-<?php
+
     $query = $_GET['query']; 
     // gets value sent over search form
     $min_length = 0;
