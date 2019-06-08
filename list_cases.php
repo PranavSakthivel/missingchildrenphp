@@ -17,6 +17,9 @@ require_once 'config.inc.php';
 <?php
 require_once 'header.inc.php';
 ?>
+<?php
+require_once 'search_people.php';
+?>
 <div>
     <h2>Product Catalog</h2>
     <?php

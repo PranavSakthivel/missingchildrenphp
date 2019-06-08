@@ -11,6 +11,9 @@
 <?php
 require_once 'header.inc.php';
 ?>
+<?php
+require_once 'search_people.php';
+?>
 <div>
     <h2>About</h2>
     <div>This is a website that runs queries on a database of missing children.</div>
