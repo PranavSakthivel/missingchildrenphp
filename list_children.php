@@ -20,7 +20,7 @@ require_once 'header.inc.php';
 <div>
     <h2>Missing Children List</h2>
     <small>Search by First Name</small>
-    <form action="search_people.php" method="POST">
+    <form action="search_people.php" method="GET">
         <input type="text" name="query" />
         <input type="submit" value="Search" />
     </form>
