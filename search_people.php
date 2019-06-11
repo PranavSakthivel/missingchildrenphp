@@ -25,16 +25,33 @@
         $query = htmlspecialchars($query); 
         // changes characters used in html to their equivalents, for example: < to &gt;
          
-        $query = mysqli_real_escape_string($query);
+        //$query = mysqli_real_escape_string($query);
         // makes sure nobody uses SQL injection
          
-        $raw_results = mysql_query("SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
+        // Get Query
+        $sql ="SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
         FROM MissingPersonCase AS MPC 
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        WHERE P.personFirstName LIKE '%".$query."%'") or die(mysql_error());
-             
+        WHERE P.personFirstName LIKE '%?%';"; 
+        $stmt = $conn->stmt_init();
+        if (!$stmt->prepare($sql)) {
+            echo "failed to prepare"; // Query Breaks
+        }
+        else {
+            $stmt->bind_param('s',$query); // No idea
+            $stmt->execute(); // Activate SQL
+            $stmt->bind_result($firstName,$lastName,$cityName,$dateMissing, $personID, $caseID);
+            ?>
+            <form method="get">
+                <input type="hidden" name="query" value="<?= $query ?>">
+            <?php
+            while ($stmt->fetch()) { // No idea
+                echo '<a href="show_children.php?query='  . $firstname . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\r\n" . 
+                 $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>" . "Weight: " . $weight . "<br>" . "height" . $height . "</br>" . "Birth date: " . $birthDate;
+            }
+        }
         // * means that it selects all fields, you can also write: `id`, `title`, `text`
         // articles is the name of our table
          
@@ -42,10 +59,10 @@
         // it will match "hello", "Hello man", "gogohello", if you want exact match use `title`='$query'
         // or if you want to match just full word so "gogohello" is out use '% $query %' ...OR ... '$query %' ... OR ... '% $query'
          
-        if(mysql_num_rows($raw_results) > 0){ // if one or more rows are returned do following
+        if(mysql_num_rows($sql) > 0){ // if one or more rows are returned do following
              
-            while($results = mysql_fetch_array($raw_results)){
-            // $results = mysql_fetch_array($raw_results) puts data from database into array, while it's valid it does the loop
+            while($results = mysql_fetch_array($sql)){
+            // $results = mysql_fetch_array($sql) puts data from database into array, while it's valid it does the loop
              
                 //echo "<p><h3>".$results['title']."</h3>".$results['text']."</p>";
                 // posts results gotten from database(title and text) you can also show id ($results['id'])
@@ -54,9 +71,10 @@
                 echo "<ul>";
                 while ($stmt->fetch()) {
                 echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
-        }
-        echo "</ul>";
+                }
             }
+        echo "</ul>";
+            
              
         }
         else{ // if there is no matching rows do following
