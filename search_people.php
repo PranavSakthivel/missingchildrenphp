@@ -54,7 +54,8 @@
             }
         }
          
-        if(mysql_num_rows($sql) > 0){ // if one or more rows are returned do following
+        //if(mysql_num_rows($sql) > 0){ // if one or more rows are returned do following
+        if(mysqli_num_rows($stmt) > 0){ 
              
             while($results = mysql_fetch_array($sql)){
                 $stmt = $conn->stmt_init(); // Initialize variable
