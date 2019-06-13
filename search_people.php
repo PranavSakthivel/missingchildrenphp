@@ -27,7 +27,7 @@ require_once 'config.inc.php';
     if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
          
         // Changes the user's query to remove any special characters. Protects against certain HTML and Javascript attacks
-        $query = htmlspecialchars($query); 
+        $query = '%' . htmlspecialchars($query) . '%'; 
 
         // Get Query
         $sql ="SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
@@ -35,7 +35,7 @@ require_once 'config.inc.php';
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        AND P.personFirstName LIKE \'\%?\%\';";
+        AND P.personFirstName LIKE ?;";
         
         echo "Search Query: ";
         echo $query;
