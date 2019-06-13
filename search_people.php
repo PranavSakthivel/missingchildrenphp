@@ -49,27 +49,28 @@
                 <input type="hidden" name="query" value="<?= $query ?>">
             <?php
             while ($stmt->fetch()) { // This should pull until the program hits an EOL
-                echo '<a href="show_children.php?query='  . $firstname . '">' . '</a><br>' . "Name: " . $firstName," ",$middleName," ",$lastName . "\r\n" . 
-                 $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>" . "Weight: " . $weight . "<br>" . "height" . $height . "</br>" . "Birth date: " . $birthDate;
+                echo '<a href="show_children.php?query='  . $personID . '">' . '</a><br>' . "Name: " . $firstName,"" . "",$lastName . "\r\n" . 
+                 $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>";
             }
         }
-        $result = mysqli_query($conn, $sql);
+        //$result = mysqli_query($conn, $sql);
          
-        if(mysqli_num_rows($result) > 0){ // if one or more rows are returned do following
+        
+        // if(mysqli_num_rows($result) > 0){ // if one or more rows are returned do following
              
-            while($results = mysqli_fetch_array($result, MYSQLI_NUM)){
-                $stmt = $conn->stmt_init(); // Initialize variable
-                $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID); // Allocate retrieved values
-                echo "<ul>";
-                while ($stmt->fetch()) {
-                echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
-                }
-            }
-        echo "</ul>";
-        }
-        else{ // if there is no matching rows do following
-            echo "No results";
-        }
+        //     while($results = mysqli_fetch_array($result, MYSQLI_NUM)){
+        //         $stmt = $conn->stmt_init(); // Initialize variable
+        //         $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID); // Allocate retrieved values
+        //         echo "<ul>";
+        //         while ($stmt->fetch()) {
+        //         echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
+        //         }
+        //     }
+        // echo "</ul>";
+        // }
+        // else{ // if there is no matching rows do following
+        //     echo "No results";
+        // }
          
     }
     else{ // if query length is less than minimum
