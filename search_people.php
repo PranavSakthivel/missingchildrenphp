@@ -1,4 +1,7 @@
+<?php
+require_once 'config.inc.php';
 
+?>
 <html>
 <head>
     <title>Search Results</title>
@@ -6,7 +9,7 @@
 </head>
 <body>
 <?php
-    require_once 'config.inc.php';
+    require_once 'header.inc.php';
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database, $port);
