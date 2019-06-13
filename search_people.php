@@ -34,7 +34,15 @@
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        WHERE P.personFirstName LIKE '%?%' OR P.personLastName LIKE '%?%';"; 
+        AND P.personFirstName LIKE '%?%';";
+        
+
+        // $sql ="SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
+        // FROM MissingPersonCase AS MPC 
+        // INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
+        // INNER JOIN Person AS P ON CPT.personID = P.personID 
+        // WHERE CPT.roleCode = \"Victim\" 
+        // WHERE P.personFirstName = \"Omar\";";
 
         $stmt = $conn->stmt_init(); // This line initilizes the variable, $stmt
         if (!$stmt->prepare($sql)) { 
