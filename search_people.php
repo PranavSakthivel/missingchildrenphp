@@ -34,7 +34,7 @@
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        AND P.personFirstName LIKE %?%;";
+        AND P.personFirstName LIKE ?;";
         
         echo "Search Query: ";
         echo $query;
