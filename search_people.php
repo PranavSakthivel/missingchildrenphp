@@ -28,10 +28,7 @@ require_once 'config.inc.php';
          
         // Changes the user's query to remove any special characters. Protects against certain HTML and Javascript attacks
         $query = htmlspecialchars($query); 
-         
-        //$query = mysqli_real_escape_string($query);
-        // makes sure nobody uses SQL injection
-         
+
         // Get Query
         $sql ="SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
         FROM MissingPersonCase AS MPC 
@@ -60,26 +57,7 @@ require_once 'config.inc.php';
                 echo '<a href="show_children.php?id='  . $personID . '">' .  "Name: " . $firstName," " . $lastName . '<br>' . "\r\n" . 
                 "Missing from: " . $cityName . "<br>" . "Missing on: ",$dateMissing . "</a></br>";
             }
-        }
-        //$result = mysqli_query($conn, $sql);
-         
-        
-        // if(mysqli_num_rows($result) > 0){ // if one or more rows are returned do following
-             
-        //     while($results = mysqli_fetch_array($result, MYSQLI_NUM)){
-        //         $stmt = $conn->stmt_init(); // Initialize variable
-        //         $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID); // Allocate retrieved values
-        //         echo "<ul>";
-        //         while ($stmt->fetch()) {
-        //         echo '<li><a href="show_children.php?id='  . $personID . '">' . $firstName," ",$lastName,", ",$caseCity," ",$dateMissing . '</a></li>';
-        //         }
-        //     }
-        // echo "</ul>";
-        // }
-        // else{ // if there is no matching rows do following
-        //     echo "No results";
-        // }
-         
+        }         
     }
     else{ // if query length is less than minimum
         echo "Minimum length is ".$min_length;
