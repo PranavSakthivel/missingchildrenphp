@@ -27,6 +27,7 @@ require_once 'config.inc.php';
     if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
          
         // Changes the user's query to remove any special characters. Protects against certain HTML and Javascript attacks
+        $displayquery = $query;
         $query = '%' . htmlspecialchars($query) . '%'; 
 
         // Get Query
@@ -38,7 +39,7 @@ require_once 'config.inc.php';
         AND P.personFirstName LIKE ?;";
         
         echo "Search Query: ";
-        echo $query;
+        echo $displayquery;
         
 
         $stmt = $conn->stmt_init(); // This line initilizes the variable, $stmt
@@ -55,7 +56,7 @@ require_once 'config.inc.php';
             <?php
             while ($stmt->fetch()) { // This should pull until the program hits an EOL
                 echo '<a href="show_children.php?id='  . $personID . '">' .  "Name: " . $firstName," " . $lastName . '<br>' . "\r\n" . 
-                "Missing from: " . $cityName . "<br>" . "Missing on: ",$dateMissing . "</a></br>";
+                "Missing from: " . $cityName . "<br>" . "Missing on: ",$dateMissing . "</a></br><br></br>";
             }
         }         
     }
