@@ -34,17 +34,18 @@
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        AND P.personFirstName LIKE '%".$query."%'";
+        AND P.personFirstName LIKE %?%;";
         
         echo "Search Query: ";
         echo $query;
+        
 
         $stmt = $conn->stmt_init(); // This line initilizes the variable, $stmt
         if (!$stmt->prepare($sql)) { 
             echo "failed to prepare"; // Query Breaks
         }
         else {
-            //$stmt->bind_param('s',$query); // Replaces question marks with queries
+            $stmt->bind_param('s',$query); // Replaces question marks with queries
             $stmt->execute(); // Activate SQL
             $stmt->bind_result($firstName,$lastName,$cityName,$dateMissing, $personID, $caseID);
             ?>
@@ -52,8 +53,8 @@
                 <input type="hidden" name="query" value="<?= $query ?>">
             <?php
             while ($stmt->fetch()) { // This should pull until the program hits an EOL
-                echo '<a href="show_children.php?query='  . $personID . '">' .  "Name: " . $firstName," " . $lastName . '</a><br>' . "\r\n" . 
-                 $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>";
+                echo '<a href="show_children.php?id='  . $personID . '">' .  "Name: " . $firstName," " . $lastName . '<br>' . "\r\n" . 
+                "Missing from: " . $cityName . "<br>" . "Missing on: ",$dateMissing . "</a></br>";
             }
         }
         //$result = mysqli_query($conn, $sql);
