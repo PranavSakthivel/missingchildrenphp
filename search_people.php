@@ -53,11 +53,11 @@
                  $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>" . "Weight: " . $weight . "<br>" . "height" . $height . "</br>" . "Birth date: " . $birthDate;
             }
         }
+        $result = mysqli_query($conn, $sql);
          
-        //if(mysql_num_rows($sql) > 0){ // if one or more rows are returned do following
-        if(mysqli_num_rows($stmt) > 0){ 
+        if(mysqli_num_rows($result) > 0){ // if one or more rows are returned do following
              
-            while($results = mysql_fetch_array($sql)){
+            while($results = mysqli_fetch_array($result, MYSQLI_NUM)){
                 $stmt = $conn->stmt_init(); // Initialize variable
                 $stmt->bind_result($firstName,$lastName,$caseCity,$dateMissing,$personID,$mpcID); // Allocate retrieved values
                 echo "<ul>";
