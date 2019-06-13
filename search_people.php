@@ -34,9 +34,9 @@
         INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
         INNER JOIN Person AS P ON CPT.personID = P.personID 
         WHERE CPT.roleCode = \"Victim\" 
-        AND P.personFirstName LIKE '%?%';";
+        AND P.personFirstName LIKE '%A%';";
         
-
+        
         // $sql ="SELECT P.personFirstName, P.personLastName, MPC.missingPersonCaseCity, MPC.missingPersonCaseDateMissing, P.personID, MPC.missingPersonCaseID 
         // FROM MissingPersonCase AS MPC 
         // INNER JOIN CasePersonTable AS CPT ON CPT.missingPersonCaseID = MPC.missingPersonCaseID 
@@ -49,8 +49,8 @@
             echo "failed to prepare"; // Query Breaks
         }
         else {
-            $stmt->bind_param('s',$query); // Replaces question marks with queries
-            $stmt->execute(); // Activate SQL
+ //           $stmt->bind_param('s',$query); // Replaces question marks with queries
+ //           $stmt->execute(); // Activate SQL
             $stmt->bind_result($firstName,$lastName,$cityName,$dateMissing, $personID, $caseID);
             ?>
             <form method="GET">
