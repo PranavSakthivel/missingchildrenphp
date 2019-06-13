@@ -36,6 +36,7 @@
         WHERE CPT.roleCode = \"Victim\" 
         AND P.personFirstName LIKE '%".$query."%'";
         
+        echo "Search Query: ";
         echo $query;
 
         $stmt = $conn->stmt_init(); // This line initilizes the variable, $stmt
@@ -51,7 +52,7 @@
                 <input type="hidden" name="query" value="<?= $query ?>">
             <?php
             while ($stmt->fetch()) { // This should pull until the program hits an EOL
-                echo '<a href="show_children.php?query='  . $personID . '">' . '</a><br>' . "Name: " . $firstName,"" . "",$lastName . "\r\n" . 
+                echo '<a href="show_children.php?query='  . $personID . '">' .  "Name: " . $firstName," " . $lastName . '</a><br>' . "\r\n" . 
                  $cityName . "<br>" . "Missing on: ",$dateMissing . "</br>";
             }
         }
